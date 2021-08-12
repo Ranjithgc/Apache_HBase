@@ -13,6 +13,10 @@ import csv
 import requests
 import os
 import time
+
+from dotenv import load_dotenv
+load_dotenv('.env')
+key = os.getenv('API_KEY')
 # Start thrift server first: hbase-daemon.sh start thrift
 
 class Hbase:
@@ -57,7 +61,7 @@ class Hbase:
         try:
             connection = self.conn
             table = connection.table('stock')
-            CSV_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY_EXTENDED&symbol=IBM&interval=15min&slice=year1month1&apikey= ZG5WJ6XQ5M44IDGC'
+            CSV_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY_EXTENDED&symbol=IBM&interval=15min&slice=year1month1&apikey= key'
 
             with requests.Session() as s:
                 download = s.get(CSV_URL)
